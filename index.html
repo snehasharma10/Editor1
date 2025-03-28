@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Code Editor</title>
+    <link rel="stylesheet" href="STYLES.CSS">
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    #navbar {
+        background-color: #151414;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: rgb(137, 126, 126);
+        
+    }
+
+    #editor-container {
+        flex: 1;
+        height: 100%;
+    }
+
+    #preview-container {
+        flex: 1;
+        height: 100%;
+        overflow: auto;
+        border-left: 2px solid #362e2e;
+        padding: 10px;
+    }
+
+    button {
+        padding: 8px 12px;
+        margin: 0 5px;
+        cursor: pointer;
+    }
+
+</style>
+</head>
+<body>
+    <div id="navbar">
+        <div>
+            <button onclick="setEditorMode('html')">HTML</button>
+            <button onclick="setEditorMode('javascript')">Javascript</button>
+            <button onclick="setEditorMode('css')">CSS</button>
+            
+    </div>
+      
+        <button onclick="updatePreview()">Run</button>
+    </div>
+    <div id="editor-container"></div>
+
+    <div id="preview-container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>  
+<script>
+     // Initialize Ace editor
+     var editor = ace.edit("editor-container");
+     editor.setTheme("ace/theme/twilight");
+     editor.session.setMode("ace/mode/html");
+
+     // Function to set editor mode
+     function setEditorMode(mode) {
+         if (mode === 'html' || mode === 'javascript' || mode === 'css') {
+             editor.session.setMode(`ace/mode/${mode}`);
+         }
+     }
+
+     // Function to update the preview
+     function updatePreview() {
+         var previewContainer = document.getElementById('preview-container');
+         var code = editor.getValue();
+         previewContainer.innerHTML = code;
+     }
+     
+     // Initial preview update<div class="live-preview">
+   
+
+     updatePreview();
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
